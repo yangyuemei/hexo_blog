@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>杨月梅的个人博客</title>
+  <subtitle>既然选择了远方,便只顾风雨兼程</subtitle>
+  <link href="/blog/atom.xml" rel="self"/>
+  
+  <link href="yangyuemei.coding.me/"/>
+  <updated>2017-03-21T07:48:51.782Z</updated>
+  <id>yangyuemei.coding.me/</id>
+  
+  <author>
+    <name>yangyuemei</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>bootstrap实现简单的tab页</title>
+    <link href="yangyuemei.coding.me/2017/03/21/bootstrap%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84tab%E9%A1%B5/"/>
+    <id>yangyuemei.coding.me/2017/03/21/bootstrap实现简单的tab页/</id>
+    <published>2017-03-21T07:15:16.000Z</published>
+    <updated>2017-03-21T07:48:51.782Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-引入对应的css、js文件"><a href="#1-引入对应的css、js文件" class="headerlink" title="1. 引入对应的css、js文件"></a>1. 引入对应的css、js文件</h3>   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;link rel=<span class="string">"stylesheet"</span> href=<span class="string">"https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"</span>&gt;</div><div class="line">	&lt;script src="https://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"&gt;&lt;/script&gt;</div><div class="line">	&lt;script src=<span class="string">"https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"</span>&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h3 id="2-写一个ul-包含tab页标题"><a href="#2-写一个ul-包含tab页标题" class="headerlink" title="2. 写一个ul,包含tab页标题"></a>2. 写一个ul,包含tab页标题</h3>   <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;ul id="myTab" class="nav nav-tabs"&gt;</div><div class="line">	&lt;li class="active"&gt;&lt;a href="#home" data-toggle="tab"&gt;菜鸟教程&lt;/a&gt;&lt;/li&gt;</div><div class="line">	&lt;li&gt;&lt;a href="#ios" data-toggle="tab"&gt;iOS&lt;/a&gt;&lt;/li&gt;</div><div class="line">	&lt;li class="dropdown"&gt;</div><div class="line">		&lt;a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown"&gt;Java &lt;b class="caret"&gt;&lt;/b&gt;&lt;/a&gt;</div><div class="line">		&lt;ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1"&gt;</div><div class="line">			&lt;li&gt;&lt;a href="#jmeter" tabindex="-1" data-toggle="tab"&gt;jmeter&lt;/a&gt;&lt;/li&gt;</div><div class="line">			&lt;li&gt;&lt;a href="#ejb" tabindex="-1" data-toggle="tab"&gt;ejb&lt;/a&gt;&lt;/li&gt;</div><div class="line">		&lt;/ul&gt;</div><div class="line">	&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure>
+<h3 id="3-每一个tab对应的内容页"><a href="#3-每一个tab对应的内容页" class="headerlink" title="3. 每一个tab对应的内容页"></a>3. 每一个tab对应的内容页</h3>   <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;div id="myTabContent" class="tab-content"&gt;</div><div class="line">	&lt;div class="tab-pane fade in active" id="home"&gt;</div><div class="line">		&lt;p&gt;home&lt;/p&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line">	&lt;div class="tab-pane fade" id="ios"&gt;</div><div class="line">		&lt;p&gt;ios&lt;/p&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line">	&lt;div class="tab-pane fade" id="jmeter"&gt;</div><div class="line">		&lt;p&gt;jmeter&lt;/p&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line">	&lt;div class="tab-pane fade" id="ejb"&gt;</div><div class="line">		&lt;p&gt;ejb&lt;/p&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<h3 id="4-tab页点击之后的状态"><a href="#4-tab页点击之后的状态" class="headerlink" title="4. tab页点击之后的状态"></a>4. tab页点击之后的状态</h3>   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	$(<span class="string">'a[data-toggle="tab"]'</span>).on(<span class="string">'shown.bs.tab'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">		<span class="comment">// 获取已激活的标签页的名称</span></div><div class="line">		<span class="keyword">var</span> activeTab = $(e.target).text();</div><div class="line">		<span class="comment">// 获取前一个激活的标签页的名称</span></div><div class="line">		<span class="keyword">var</span> previousTab = $(e.relatedTarget).text();</div><div class="line">		$(<span class="string">".active-tab span"</span>).html(activeTab);</div><div class="line">		$(<span class="string">".previous-tab span"</span>).html(previousTab);</div><div class="line">	&#125;);</div><div class="line">&#125;);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>   ​</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-引入对应的css、js文件&quot;&gt;&lt;a href=&quot;#1-引入对应的css、js文件&quot; class=&quot;headerlink&quot; title=&quot;1. 引入对应的css、js文件&quot;&gt;&lt;/a&gt;1. 引入对应的css、js文件&lt;/h3&gt;   &lt;figure class=&quot;h
+    
+    </summary>
+    
+      <category term="bootstrap" scheme="yangyuemei.coding.me/categories/bootstrap/"/>
+    
+    
+      <category term="bootstrap" scheme="yangyuemei.coding.me/tags/bootstrap/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>渐进增强和优雅降级的区别</title>
+    <link href="yangyuemei.coding.me/2017/03/21/%E6%B8%90%E8%BF%9B%E5%A2%9E%E5%BC%BA%E5%92%8C%E4%BC%98%E9%9B%85%E9%99%8D%E7%BA%A7%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>yangyuemei.coding.me/2017/03/21/渐进增强和优雅降级的区别/</id>
+    <published>2017-03-21T06:57:34.000Z</published>
+    <updated>2017-03-21T07:09:50.224Z</updated>
+    
+    <content type="html"><![CDATA[<ul>
+<li><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ul>
+<li><strong>渐进增强（progressive enhancement):</strong> 一开始只构建站点的最少特性，然后不断针对各浏览器追加功能</li>
+<li><strong>优雅降级（graceful degradation):</strong> 一开始就构建站点的完整功能，然后针对浏览器测试和修复</li>
+</ul>
+</li>
+<li><h3 id="都关注于同一网站在不同设备里不同浏览器下的表现程度"><a href="#都关注于同一网站在不同设备里不同浏览器下的表现程度" class="headerlink" title="都关注于同一网站在不同设备里不同浏览器下的表现程度"></a>都关注于同一网站在不同设备里不同浏览器下的表现程度</h3></li>
+<li><h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><ul>
+<li><strong>“渐进增强” </strong>观点则认为应关注于内容本身。请注意其中的差别：<em>我甚至连“浏览器”三个字都没提</em>。</li>
+<li><strong>“优雅降级”</strong>观点认为应该针对那些最高级、最完善的浏览器来设计网站. 而将那些被认为“过时”或有功能缺失的浏览器下的测试工作安排在开发周期的最后阶段，并把测试对象限定为主流浏览器（如 IE、Mozilla 等）的前一个版本。</li>
+</ul>
+</li>
+<li><h3 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h3><ul>
+<li><strong>“渐进增强”</strong>则是从浏览器支持的基本功能开始, 首先为所有设备准备好清晰且语义化的html及完整内容, 然后再以无侵入的方法向页面增加无害于基础浏览器的额外样式和功能. 当浏览器升级时, 它们会自动呈现并发挥作用.</li>
+<li><strong>“优雅降级”</strong>就是首先完整地实现整个网站,包括其中的功能和效果. 然后再为那些无法支持所有功能的浏览器增加候选方案, 使之在旧式浏览器上以某种形式降级体验却不至于完全失效.</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;&lt;h3 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;渐进增强（progressive enhancement):&lt;/strong&gt; 一开始只构建站
+    
+    </summary>
+    
+      <category term="前端" scheme="yangyuemei.coding.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="前端" scheme="yangyuemei.coding.me/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>miss you</title>
+    <link href="yangyuemei.coding.me/2017/03/18/miss-you/"/>
+    <id>yangyuemei.coding.me/2017/03/18/miss-you/</id>
+    <published>2017-03-18T03:35:55.000Z</published>
+    <updated>2017-03-21T02:13:33.740Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://www.yh31.com/UploadFiles/qq/ZJBQ/20113/201103080831194713.gif" alt=""></p>
+<h4 id="思念一个人，就像中了毒一样"><a href="#思念一个人，就像中了毒一样" class="headerlink" title="思念一个人，就像中了毒一样*"></a><strong>思念一个人，就像中了毒一样*</strong></h4><h4 id="时间越久，中毒就越深"><a href="#时间越久，中毒就越深" class="headerlink" title="时间越久，中毒就越深"></a><strong><em>时间越久，中毒就越深</em></strong></h4><h4 id="当毒已入骨的时候，你就会有一种想要窒息的感觉"><a href="#当毒已入骨的时候，你就会有一种想要窒息的感觉" class="headerlink" title="当毒已入骨的时候，你就会有一种想要窒息的感觉"></a><strong><em>当毒已入骨的时候，你就会有一种想要窒息的感觉</em></strong></h4><h4 id="但是如果你百毒不侵，那么恭喜你，你是那么的冷酷无情"><a href="#但是如果你百毒不侵，那么恭喜你，你是那么的冷酷无情" class="headerlink" title="但是如果你百毒不侵，那么恭喜你，你是那么的冷酷无情"></a><strong><em>但是如果你百毒不侵，那么恭喜你，你是那么的冷酷无情</em></strong></h4>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://www.yh31.com/UploadFiles/qq/ZJBQ/20113/201103080831194713.gif&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;思念一个人，就像中了毒一样&quot;&gt;&lt;a href=&quot;#思念一个人，就像中了毒一
+    
+    </summary>
+    
+      <category term="心情" scheme="yangyuemei.coding.me/categories/%E5%BF%83%E6%83%85/"/>
+    
+    
+      <category term="心情" scheme="yangyuemei.coding.me/tags/%E5%BF%83%E6%83%85/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PHP实现简单分页过程</title>
+    <link href="yangyuemei.coding.me/2017/03/18/PHP%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E5%88%86%E9%A1%B5%E8%BF%87%E7%A8%8B/"/>
+    <id>yangyuemei.coding.me/2017/03/18/PHP实现简单分页过程/</id>
+    <published>2017-03-18T03:07:52.000Z</published>
+    <updated>2017-03-21T01:48:03.249Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-连接数据库"><a href="#1-连接数据库" class="headerlink" title="1. 连接数据库"></a>1. 连接数据库</h3>   <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$link=mysql_connect(<span class="string">"localhost"</span>,<span class="string">"root"</span>,<span class="string">"root"</span>);<span class="comment">//root为用户数据库用户名、密码</span></div><div class="line">mysql_select_db(<span class="string">"db_name"</span>,$link);<span class="comment">//db_name为数据库名</span></div><div class="line">mysql_query(<span class="string">"set names gb2312"</span>);<span class="comment">//设置字集</span></div></pre></td></tr></table></figure>
+<h3 id="2-得到5个值"><a href="#2-得到5个值" class="headerlink" title="2. 得到5个值"></a>2. 得到5个值</h3>   <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$perNumber=<span class="number">2</span>; <span class="comment">//每页显示的记录数</span></div><div class="line"></div><div class="line">$page=$_GET[<span class="string">'page'</span>]; <span class="comment">//获得当前的页面值</span></div><div class="line"></div><div class="line">$count=mysql_query(<span class="string">"select count(*) from tb_article"</span>); </div><div class="line">$result=mysql_fetch_array($count);</div><div class="line">$totalNumber=$result[<span class="number">0</span>];<span class="comment">//获得记录总数</span></div><div class="line"></div><div class="line">$totalPage=ceil($totalNumber/$perNumber); <span class="comment">//计算出总页数</span></div><div class="line"></div><div class="line">$startCount=($page-<span class="number">1</span>)*$perNumber;<span class="comment">//计算偏移量</span></div></pre></td></tr></table></figure>
+<h3 id="3-判断当前页数"><a href="#3-判断当前页数" class="headerlink" title="3. 判断当前页数"></a>3. 判断当前页数</h3>   <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//如果没有值,则赋值1</span></div><div class="line"><span class="keyword">if</span> (!isset($page)) &#123;</div><div class="line">  $page=<span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="4-根据上面的数值计算出开始的记录和记录数-即sql查询语句"><a href="#4-根据上面的数值计算出开始的记录和记录数-即sql查询语句" class="headerlink" title="4. 根据上面的数值计算出开始的记录和记录数(即sql查询语句)"></a>4. 根据上面的数值计算出开始的记录和记录数(即sql查询语句)</h3>   <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$rs=mysql_query(<span class="string">"select * from tb_article limit $startCount,$perNumber"</span>);</div></pre></td></tr></table></figure>
+<h3 id="5-while-循环输出每页记录数"><a href="#5-while-循环输出每页记录数" class="headerlink" title="5. while 循环输出每页记录数"></a>5. while 循环输出每页记录数</h3>   <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">while($row = mysql_fetch_array($rs))&#123;</div><div class="line">  &lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;?php echo $row[''];?&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="6-分页条的显示"><a href="#6-分页条的显示" class="headerlink" title="6. 分页条的显示"></a>6. 分页条的显示</h3><pre><code>​<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">  if ($page != 1) &#123; //页数不等于1</div><div class="line">?&gt;</div><div class="line"> &lt;ul class="pagination"&gt;</div><div class="line">    &lt;!--显示上一页--&gt;</div><div class="line">    &lt;li&gt;&lt;a href="main.php?page=&lt;?php echo $page - 1;?&gt;"&gt;上一页&lt;/a&gt;&lt;/li&gt;</div><div class="line">  &lt;/ul&gt;</div><div class="line">  &lt;?php</div><div class="line">   &#125;</div><div class="line">    for ($i=1;$i&lt;=$totalPage;$i++) &#123;  //循环显示出页面</div><div class="line">  ?&gt;</div><div class="line">     &lt;ul class="pagination"&gt;</div><div class="line">       &lt;li&gt;&lt;a href="main.php?page=&lt;?php echo $i;?&gt;"&gt;&lt;?php echo $i;?&gt;&lt;/a&gt;&lt;/li&gt;</div><div class="line">       &lt;/ul&gt;</div><div class="line">    &lt;?php</div><div class="line">     &#125;</div><div class="line">    if ($page&lt;$totalPage) &#123; //如果page小于总页数,显示下一页链接</div><div class="line">      ?&gt;</div><div class="line">        &lt;ul class="pagination"&gt;</div><div class="line">         &lt;li&gt;&lt;a href="main.php?page=&lt;?php echo $page + 1;?&gt;"&gt;下一页&lt;/a&gt;&lt;/li&gt;</div><div class="line">       &lt;/ul&gt;</div><div class="line">      &lt;?php</div><div class="line">       &#125;</div><div class="line">  ?&gt;</div><div class="line"> ​</div></pre></td></tr></table></figure>
+</code></pre><h3 id="7-到此完成简单的分页"><a href="#7-到此完成简单的分页" class="headerlink" title="7. 到此完成简单的分页"></a>7. 到此完成简单的分页</h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-连接数据库&quot;&gt;&lt;a href=&quot;#1-连接数据库&quot; class=&quot;headerlink&quot; title=&quot;1. 连接数据库&quot;&gt;&lt;/a&gt;1. 连接数据库&lt;/h3&gt;   &lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td cl
+    
+    </summary>
+    
+      <category term="php" scheme="yangyuemei.coding.me/categories/php/"/>
+    
+    
+      <category term="php" scheme="yangyuemei.coding.me/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>jquery-ui-jqLoading.js实现Loading转圈圈等待效果</title>
+    <link href="yangyuemei.coding.me/2017/03/17/jquery-ui-jqLoading-js%E5%AE%9E%E7%8E%B0Loading%E8%BD%AC%E5%9C%88%E5%9C%88%E7%AD%89%E5%BE%85%E6%95%88%E6%9E%9C/"/>
+    <id>yangyuemei.coding.me/2017/03/17/jquery-ui-jqLoading-js实现Loading转圈圈等待效果/</id>
+    <published>2017-03-17T08:59:55.000Z</published>
+    <updated>2017-03-21T02:12:59.454Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下"></a>步骤如下</h2><ul>
+<li><h3 id="引入jquery-js-和-jquery-ui-jqLoading-js"><a href="#引入jquery-js-和-jquery-ui-jqLoading-js" class="headerlink" title="引入jquery.js 和 jquery-ui-jqLoading.js"></a>引入jquery.js 和 jquery-ui-jqLoading.js</h3></li>
+<li><h3 id="在html文件中给按钮一个id"><a href="#在html文件中给按钮一个id" class="headerlink" title="在html文件中给按钮一个id"></a>在html文件中给按钮一个id</h3></li>
+<li><h3 id="写js脚本"><a href="#写js脚本" class="headerlink" title="写js脚本"></a>写js脚本</h3></li>
+</ul>
+<p><strong><em>以下为实现代码</em></strong></p>
+<p>index.html<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang="en"&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset="UTF-8"&gt;</div><div class="line">    &lt;title&gt;转圈圈效果&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;input type="button" id="btnOpen2" value="转圈圈" /&gt;</div><div class="line">&lt;script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"&gt;&lt;/script&gt;</div><div class="line">&lt;script src="jquery-ui-jqLoding.js"&gt;&lt;/script&gt;</div><div class="line">&lt;script type="text/javascript"&gt;</div><div class="line">    $(function () &#123;</div><div class="line">        $("#btnOpen2").on("click", function () &#123;</div><div class="line">            $.fn.jqLoading(&#123; height: 100, width: 240, text: "正在上传中，请耐心等待...." &#125;);</div><div class="line">            setTimeout(function () &#123;</div><div class="line">                $.fn.jqLoading("destroy");</div><div class="line">            &#125;, 3000);</div><div class="line">        &#125;);</div><div class="line">    &#125;)</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;步骤如下&quot;&gt;&lt;a href=&quot;#步骤如下&quot; class=&quot;headerlink&quot; title=&quot;步骤如下&quot;&gt;&lt;/a&gt;步骤如下&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;h3 id=&quot;引入jquery-js-和-jquery-ui-jqLoading-js&quot;&gt;&lt;a href=&quot;#
+    
+    </summary>
+    
+      <category term="jquery特效" scheme="yangyuemei.coding.me/categories/jquery%E7%89%B9%E6%95%88/"/>
+    
+    
+      <category term="jquery特效" scheme="yangyuemei.coding.me/tags/jquery%E7%89%B9%E6%95%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>jquery点击事件无效问题</title>
+    <link href="yangyuemei.coding.me/2017/03/17/jquery%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E6%97%A0%E6%95%88%E9%97%AE%E9%A2%98/"/>
+    <id>yangyuemei.coding.me/2017/03/17/jquery点击事件无效问题/</id>
+    <published>2017-03-17T08:46:45.000Z</published>
+    <updated>2017-03-21T02:13:16.542Z</updated>
+    
+    <content type="html"><![CDATA[<ul>
+<li><h3 id="问题-ajax异步请求数据后-动态想table中追加行，行点击事件无效"><a href="#问题-ajax异步请求数据后-动态想table中追加行，行点击事件无效" class="headerlink" title="问题:ajax异步请求数据后,动态想table中追加行，行点击事件无效"></a>问题:ajax异步请求数据后,动态想table中追加行，行点击事件无效</h3></li>
+<li><h3 id="原因-动态加入到dom中的对象无法继承原有的事件，故无效"><a href="#原因-动态加入到dom中的对象无法继承原有的事件，故无效" class="headerlink" title="原因:动态加入到dom中的对象无法继承原有的事件，故无效"></a>原因:动态加入到dom中的对象无法继承原有的事件，故无效</h3></li>
+<li><h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><h4 id="1-js方法：将td的点击事件写成函数"><a href="#1-js方法：将td的点击事件写成函数" class="headerlink" title="1. js方法：将td的点击事件写成函数"></a>1. js方法：将td的点击事件写成函数</h4><pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#table"</span>).append(&lt;tr&gt;&lt;td onclick=""&gt;&lt;/td&gt;&lt;/tr&gt;);</div></pre></td></tr></table></figure>
+</code></pre><h4 id="2-jquery方法：利用事件委派机制-适用于jquery1-9版本以下"><a href="#2-jquery方法：利用事件委派机制-适用于jquery1-9版本以下" class="headerlink" title="2. jquery方法：利用事件委派机制(适用于jquery1.9版本以下)"></a>2. jquery方法：利用事件委派机制(适用于jquery1.9版本以下)</h4><pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#table"</span>).find(<span class="string">"td"</span>).live(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;);</div></pre></td></tr></table></figure>
+</code></pre><h4 id="3-jquery方法：适用于jquery1-7版本以上"><a href="#3-jquery方法：适用于jquery1-7版本以上" class="headerlink" title="3. jquery方法：适用于jquery1.7版本以上"></a>3. jquery方法：适用于jquery1.7版本以上</h4><pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#table"</span>).find(<span class="string">"td"</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;);</div></pre></td></tr></table></figure>
+</code></pre></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;&lt;h3 id=&quot;问题-ajax异步请求数据后-动态想table中追加行，行点击事件无效&quot;&gt;&lt;a href=&quot;#问题-ajax异步请求数据后-动态想table中追加行，行点击事件无效&quot; class=&quot;headerlink&quot; title=&quot;问题:ajax异步请求数据
+    
+    </summary>
+    
+      <category term="jquery" scheme="yangyuemei.coding.me/categories/jquery/"/>
+    
+    
+      <category term="jquery" scheme="yangyuemei.coding.me/tags/jquery/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>each的三种遍历方法</title>
+    <link href="yangyuemei.coding.me/2017/03/17/each%E7%9A%84%E4%B8%89%E7%A7%8D%E9%81%8D%E5%8E%86%E6%96%B9%E6%B3%95/"/>
+    <id>yangyuemei.coding.me/2017/03/17/each的三种遍历方法/</id>
+    <published>2017-03-17T08:35:50.000Z</published>
+    <updated>2017-03-21T02:09:02.585Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-选择器-遍历"><a href="#1-选择器-遍历" class="headerlink" title="1.  选择器+遍历"></a>1.  选择器+遍历</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'div'</span>).each(<span class="function"><span class="keyword">function</span> (<span class="params">i</span>)</span>&#123;</div><div class="line">   i就是索引值</div><div class="line">   <span class="keyword">this</span> 表示获取遍历每一个dom对象</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="2-选择器-遍历"><a href="#2-选择器-遍历" class="headerlink" title="2.  选择器+遍历"></a>2.  选择器+遍历</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'div'</span>).each(<span class="function"><span class="keyword">function</span> (<span class="params">index,domEle</span>)</span>&#123;</div><div class="line">   index就是索引值</div><div class="line">  domEle 表示获取遍历每一个dom对象</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="3-常用的遍历方法"><a href="#3-常用的遍历方法" class="headerlink" title="3.  常用的遍历方法"></a>3.  常用的遍历方法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$.each(d,<span class="function"><span class="keyword">function</span> (<span class="params">index,domEle</span>)</span>&#123;</div><div class="line">  d是要遍历的集合</div><div class="line">  index就是索引值</div><div class="line">  domEle 表示获取遍历每一个dom对</div><div class="line">&#125;);</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-选择器-遍历&quot;&gt;&lt;a href=&quot;#1-选择器-遍历&quot; class=&quot;headerlink&quot; title=&quot;1.  选择器+遍历&quot;&gt;&lt;/a&gt;1.  选择器+遍历&lt;/h3&gt;&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;
+    
+    </summary>
+    
+      <category term="jquery" scheme="yangyuemei.coding.me/categories/jquery/"/>
+    
+    
+      <category term="jquery" scheme="yangyuemei.coding.me/tags/jquery/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>git push 本地项目到远程仓库教程</title>
+    <link href="yangyuemei.coding.me/2017/03/17/git-push-%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E6%95%99%E7%A8%8B/"/>
+    <id>yangyuemei.coding.me/2017/03/17/git-push-本地项目到远程仓库教程/</id>
+    <published>2017-03-17T08:16:38.000Z</published>
+    <updated>2017-03-21T02:10:32.551Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-在coding上新建项目-复制-SSH-地址"><a href="#1-在coding上新建项目-复制-SSH-地址" class="headerlink" title="1. 在coding上新建项目 复制 SSH 地址"></a>1. 在coding上新建项目 复制 SSH 地址</h3><h3 id="2-在本地F盘右键鼠标-Git-Bash-Here-进入命令模式"><a href="#2-在本地F盘右键鼠标-Git-Bash-Here-进入命令模式" class="headerlink" title="2. 在本地F盘右键鼠标 Git Bash Here 进入命令模式"></a>2. 在本地F盘右键鼠标 Git Bash Here 进入命令模式</h3><h3 id="3-git-clone-SSH-地址"><a href="#3-git-clone-SSH-地址" class="headerlink" title="3. git clone SSH 地址"></a>3. <code>git clone SSH 地址</code></h3><h3 id="4-down文件"><a href="#4-down文件" class="headerlink" title="4. down文件"></a>4. down文件</h3><h3 id="5-进入文件"><a href="#5-进入文件" class="headerlink" title="5. 进入文件"></a>5. 进入文件</h3><h3 id="6-git-status-查看状态"><a href="#6-git-status-查看状态" class="headerlink" title="6. git status  //查看状态"></a>6. <code>git status</code>  //查看状态</h3><h3 id="7-git-add-添加当前文件下的所有"><a href="#7-git-add-添加当前文件下的所有" class="headerlink" title="7. git add .  //添加当前文件下的所有"></a>7. <code>git add .</code>  //添加当前文件下的所有</h3><h3 id="8-git-commit-m-“提交留言”-commit"><a href="#8-git-commit-m-“提交留言”-commit" class="headerlink" title="8. git commit -m “提交留言”  //commit"></a>8. <code>git commit -m “提交留言”</code>  //commit</h3><h3 id="9-git-push-push-到远程仓库"><a href="#9-git-push-push-到远程仓库" class="headerlink" title="9. git push  //push 到远程仓库"></a>9. <code>git push</code>  //push 到远程仓库</h3><h3 id="9-git-fetch-同步最新版本"><a href="#9-git-fetch-同步最新版本" class="headerlink" title="9. git fetch  //同步最新版本"></a>9. <code>git fetch</code>  //同步最新版本</h3><h3 id="10-git-status-查看状态"><a href="#10-git-status-查看状态" class="headerlink" title="10. git status  //查看状态"></a>10. <code>git status</code>  //查看状态</h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-在coding上新建项目-复制-SSH-地址&quot;&gt;&lt;a href=&quot;#1-在coding上新建项目-复制-SSH-地址&quot; class=&quot;headerlink&quot; title=&quot;1. 在coding上新建项目 复制 SSH 地址&quot;&gt;&lt;/a&gt;1. 在coding上新建
+    
+    </summary>
+    
+      <category term="coding" scheme="yangyuemei.coding.me/categories/coding/"/>
+    
+    
+      <category term="coding" scheme="yangyuemei.coding.me/tags/coding/"/>
+    
+      <category term="git" scheme="yangyuemei.coding.me/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo博客开启评论功能</title>
+    <link href="yangyuemei.coding.me/2017/03/17/hexo%E5%8D%9A%E5%AE%A2%E5%BC%80%E5%90%AF%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/"/>
+    <id>yangyuemei.coding.me/2017/03/17/hexo博客开启评论功能/</id>
+    <published>2017-03-17T07:29:07.000Z</published>
+    <updated>2017-03-21T02:11:01.741Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="主要步骤"><a href="#主要步骤" class="headerlink" title="主要步骤"></a>主要步骤</h1><ol>
+<li>注册多说，得到shortname</li>
+<li>在博客根目录_config.yml  配置duoshuo_shortname:  yangyuemei</li>
+<li>在主题根目录_config.yml  配置duoshuo_shortname:  yangyuemei</li>
+<li>在artical.ejs文件中 替换一下内容</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">	&lt;% if (page.comment)&#123; %&gt;</div><div class="line"></div><div class="line">&lt;section id="comment"&gt;</div><div class="line"></div><div class="line">  &lt;h2 class="title"&gt;请点评：&lt;/h2&gt;</div><div class="line"></div><div class="line">&lt;% if(theme.duoshuo_shortname) &#123; %&gt;</div><div class="line"></div><div class="line">  	   &lt;!-- 多说评论框 start --&gt;</div><div class="line"></div><div class="line"> 		&lt;div class="ds-thread" data-thread-key="&lt;%- page.path %&gt;" data-title="&lt;%- page.title %&gt;" data-url="&lt;%- page.permalink %&gt;"&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">	&lt;!-- 多说评论框 end --&gt;</div><div class="line">	&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</div><div class="line">	&lt;script type="text/javascript"&gt;</div><div class="line">	var duoshuoQuery = &#123;short_name:"yangyuemei"&#125;;   &lt;!-- 替换这里的duoshuo_shortname为前面注册的shortname --&gt;</div><div class="line">		(function() &#123;</div><div class="line">			var ds = document.createElement('script');</div><div class="line">			ds.type = 'text/javascript';ds.async = true;</div><div class="line">			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.unstable.js';</div><div class="line">			ds.charset = 'UTF-8';</div><div class="line">			(document.getElementsByTagName('head')[0] </div><div class="line">			 || document.getElementsByTagName('body')[0]).appendChild(ds);</div><div class="line">		&#125;)();</div><div class="line">		&lt;/script&gt;</div><div class="line">	&lt;!-- 多说公共JS代码 end --&gt;</div><div class="line">	  &lt;% &#125; else if(config.disqus_shortname) &#123; %&gt;</div><div class="line"></div><div class="line">  	 &lt;div id="disqus_thread"&gt;</div><div class="line"> &lt;noscript&gt;Please enable JavaScript to view the &lt;a href="//disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</div><div class="line">   	 &lt;/div&gt;</div><div class="line"></div><div class="line">  &lt;% &#125; %&gt;</div><div class="line"></div><div class="line">&lt;/section&gt;</div><div class="line"></div><div class="line">&lt;% &#125; %&gt;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;主要步骤&quot;&gt;&lt;a href=&quot;#主要步骤&quot; class=&quot;headerlink&quot; title=&quot;主要步骤&quot;&gt;&lt;/a&gt;主要步骤&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;注册多说，得到shortname&lt;/li&gt;
+&lt;li&gt;在博客根目录_config.yml  配置duoshuo_s
+    
+    </summary>
+    
+      <category term="hexo博客" scheme="yangyuemei.coding.me/categories/hexo%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="hexo博客" scheme="yangyuemei.coding.me/tags/hexo%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>for循坏之5大算法</title>
+    <link href="yangyuemei.coding.me/2017/03/16/for%E5%BE%AA%E5%9D%8F%E4%B9%8B5%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"/>
+    <id>yangyuemei.coding.me/2017/03/16/for循坏之5大排序算法/</id>
+    <published>2017-03-16T10:50:10.000Z</published>
+    <updated>2017-03-21T02:11:08.581Z</updated>
+    
+    <content type="html"><![CDATA[ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> sort=&#123; </div><div class="line"> <span class="comment">//初始化</span></div><div class="line">  init:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">     <span class="keyword">var</span> tempArr=[<span class="number">3</span>,<span class="number">6</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">11</span>,<span class="number">10</span>,<span class="number">5</span>];</div><div class="line">     sort.bubbleSort(empArr);</div><div class="line">     &#125;,</div></pre></td></tr></table></figure>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//打印到控制台</span></div><div class="line">debug:<span class="function"><span class="keyword">function</span>(<span class="params">str</span>)</span>&#123;</div><div class="line">   <span class="keyword">if</span>(<span class="built_in">window</span>.console &amp;&amp; <span class="built_in">window</span>.console.log)&#123;</div><div class="line">        <span class="built_in">console</span>.log(str);</div><div class="line">    &#125;</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//数组数据交换</span></div><div class="line">swap:<span class="function"><span class="keyword">function</span>(<span class="params">arr,index1,index2</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> temp = arr[index1];</div><div class="line">  arr[index1] = arr[index2];</div><div class="line">  arr[index2] = temp;</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//冒泡排序  </span></div><div class="line">bubbleSort:<span class="function"><span class="keyword">function</span>(<span class="params">arr</span>)</span>&#123; </div><div class="line">  <span class="comment">// this.debug("冒泡排序前的数组为:"+arr);</span></div><div class="line">  <span class="keyword">var</span> len = arr.length;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;len<span class="number">-1</span>;i++)&#123;<span class="comment">//比较的轮数为数组的总个数-1</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> j = <span class="number">0</span>;j&lt;len-i<span class="number">-1</span>;j++)&#123;<span class="comment">//每轮比较的次数</span></div><div class="line">        <span class="keyword">if</span>(arr[j]  arr[j+<span class="number">1</span>] )&#123; <span class="comment">//arr[j]  arr[j+1]为升序  arr[j] &lt; arr[j+1]为降序</span></div><div class="line">            <span class="keyword">this</span>.swap(arr,j,j+<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.debug(<span class="string">"第"</span>+(i+<span class="number">1</span>)+<span class="string">"轮冒泡排序后:"</span>+arr);</div><div class="line">&#125;</div><div class="line"><span class="keyword">this</span>.debug(<span class="string">"冒泡排序后的数组为:"</span>+arr);</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//选择排序</span></div><div class="line">selectionSort:<span class="function"><span class="keyword">function</span>(<span class="params">arr</span>)</span>&#123;</div><div class="line">  <span class="comment">// this.debug("选择排序before:"+arr);</span></div><div class="line">    <span class="keyword">var</span> len = arr.length;</div><div class="line">    <span class="keyword">var</span> min;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len <span class="number">-1</span>; i++) &#123;</div><div class="line">        min = i;</div><div class="line">        <span class="comment">// 比较最小项目和第i项之后的剩余数组项, 以寻找更小项</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> j = i+<span class="number">1</span>; j &lt; len; j++) &#123;</div><div class="line">            <span class="keyword">if</span> (arr[j] &lt; arr[min]) &#123; <span class="comment">//arr[j] &lt; arr[j+1]为升序  arr[j]  arr[j+1]为降序  </span></div><div class="line">                min = j;</div><div class="line">                <span class="keyword">this</span>.debug(<span class="string">"min--"</span>+min);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">this</span>.swap(arr,i, min);</div><div class="line">        <span class="comment">// this.debug("第"+(i+1)+"轮选择排序后:"+arr);</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.debug(<span class="string">"选择排序after:"</span>+arr);</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//快速排序</span></div><div class="line">quickSort:<span class="function"><span class="keyword">function</span>(<span class="params">arr</span>)</span>&#123; </div><div class="line">    <span class="comment">// this.debug("快速排序before:"+arr);</span></div><div class="line">    <span class="keyword">var</span> quick = <span class="function"><span class="keyword">function</span>(<span class="params">arr</span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> len = arr.length,</div><div class="line">            left = [],</div><div class="line">            right = [],</div><div class="line">            pivot;</div><div class="line">            <span class="comment">//meCall的作用是指向拥有arguments对象的函数</span></div><div class="line">            <span class="comment">// meCall = arguments.callee;  //在函数内部，有两个特殊的对象：arguments 和 this。其中， arguments 的主要用途是保存函数参数， 但这个对象还有一个名叫 callee 的属性，该属性是一个指针，指向拥有这个 arguments 对象的函数。</span></div><div class="line">        <span class="keyword">if</span>(len &lt; <span class="number">1</span>)&#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">        &#125;</div><div class="line">        pivot = arr[<span class="number">0</span>];<span class="comment">//选取数组第一个为基准进行分区</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i &lt; len<span class="number">-1</span>; i++)&#123;</div><div class="line">            <span class="keyword">if</span>(arr[i] &lt; pivot )&#123;</div><div class="line">                left.push(arr[i]); <span class="comment">//小于基准的放左边  放左边的那一堆又以第一个为基准 如此循环</span></div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span>&#123;</div><div class="line">                right.push(arr[i]);<span class="comment">//大于基准的放右边  放右边的那一堆也以第一个为基准 如此循环</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> arr.concat(left,right);</div><div class="line">        <span class="comment">// return meCall(left).concat(pivot,meCall(right));</span></div><div class="line">      <span class="comment">//arrayObject.concat(arrayX,arrayX,......,arrayX) 方法用于连接两个或多个数组 arrayX参数是必需的</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.debug(<span class="string">"快速排序after:"</span>+arr);</div><div class="line">    <span class="keyword">return</span> quick(arr);</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//插入排序    </span></div><div class="line">insertionSort:<span class="function"><span class="keyword">function</span>(<span class="params">arr</span>)</span>&#123;</div><div class="line">   <span class="comment">// this.debug("插入排序before:"+arr);</span></div><div class="line">    <span class="keyword">var</span> temp,inner,len = arr.length;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len<span class="number">-1</span> ; i++) &#123;</div><div class="line">        temp = arr[i];</div><div class="line">        inner = i;</div><div class="line">        <span class="keyword">while</span>(inner0 &amp;&amp; arr[inner<span class="number">-1</span>] = temp)&#123;</div><div class="line">            arr[inner] = arr[inner<span class="number">-1</span>];</div><div class="line">            --inner;</div><div class="line">        &#125;</div><div class="line">        arr[inner] = temp;</div><div class="line">        <span class="comment">// this.debug("第"+(i+1)+"轮插入排序后:"+arr);</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.debug(<span class="string">"插入排序after:"</span>+arr);</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//归并排序   </span></div><div class="line">mergeSort2:<span class="function"><span class="keyword">function</span>(<span class="params">arr</span>)</span>&#123; </div><div class="line">    <span class="keyword">this</span>.debug(<span class="string">"归并排序before:"</span>+arr);</div><div class="line">    <span class="keyword">var</span> len = arr.length;</div><div class="line">    <span class="keyword">if</span>(len  <span class="number">1</span>) &#123;</div><div class="line">      <span class="keyword">var</span> index = <span class="built_in">Math</span>.floor(len / <span class="number">2</span>);</div><div class="line">      left = arr.slice(<span class="number">0</span>,index); <span class="comment">//得到下标从0~index-1的数组</span></div><div class="line">      right = arr.slice(index);  <span class="comment">//得到下标从index开始到末尾的数组</span></div><div class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.merge2(mergeSort2(left),mergeSort2(right));  </div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">      <span class="keyword">return</span> arr;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.debug(<span class="string">"归并排序after:"</span>+arr);</div><div class="line">&#125;,</div><div class="line"><span class="attr">merge2</span>:<span class="function"><span class="keyword">function</span>(<span class="params">left,right</span>)</span>&#123; <span class="comment">//采用递归</span></div><div class="line">    <span class="keyword">var</span> arr = [];</div><div class="line">        <span class="keyword">while</span>(left.length &amp;&amp; right.length) &#123;</div><div class="line">          <span class="keyword">if</span>(left[<span class="number">0</span>] &lt; right[<span class="number">0</span>]) &#123;</div><div class="line">            arr.push(left.shift());</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">           arr.push(right.shift());</div><div class="line">         &#125;</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">return</span> arr.concat(left,right);</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//二分插入排序</span></div><div class="line">binaryInsertSort:<span class="function"><span class="keyword">function</span>(<span class="params">arr</span>)</span>&#123;</div><div class="line">    <span class="comment">// this.debug("二分插入排序before:"+arr);</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</div><div class="line">    <span class="keyword">var</span> key = arr[i], </div><div class="line">        left = <span class="number">0</span>, </div><div class="line">        right = i - <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span> (left &lt;= right) &#123;</div><div class="line">      <span class="comment">// var middle = parseInt((left + right) / 2);</span></div><div class="line">      <span class="keyword">var</span> middle = <span class="built_in">Math</span>.floor((left + right) / <span class="number">2</span>);</div><div class="line">      <span class="keyword">if</span> (key &lt; arr[middle]) &#123;</div><div class="line">        right = middle - <span class="number">1</span>;</div><div class="line">      &#125; </div><div class="line">      <span class="keyword">else</span> &#123;</div><div class="line">        left = middle + <span class="number">1</span>;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = i - <span class="number">1</span>; j = left; j--) &#123;</div><div class="line">      arr[j + <span class="number">1</span>] = arr[j];</div><div class="line">    &#125;</div><div class="line">    arr[left] = key;</div><div class="line">    <span class="comment">// this.debug("第"+(i+1)+"轮二分排序后:"+arr);</span></div><div class="line">  &#125;</div><div class="line">   <span class="keyword">this</span>.debug(<span class="string">"二分插入排序after:"</span>+arr);</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//希尔排序</span></div><div class="line">shellSort:<span class="function"><span class="keyword">function</span>(<span class="params">arr</span>)</span>&#123;</div><div class="line">    <span class="comment">// this.debug("希尔排序before:"+arr);</span></div><div class="line">    <span class="comment">// var gaps = [5,3,1],  //增量分组  第一次5个数为一组  第二次3个数为一组  第三次1个数为一组</span></div><div class="line">    <span class="comment">//     temp;</span></div><div class="line">    <span class="comment">// for(var g = 0;g &lt;gaps.length; g++)&#123;</span></div><div class="line">    <span class="comment">//     for(var i = gaps[g];i&lt;arr.length;i++)&#123;</span></div><div class="line">    <span class="comment">//         temp = arr[i];</span></div><div class="line">    <span class="comment">//         for(var j = i;j = gaps[g] &amp;&amp; arr[j-gaps[g]]  temp;j -= gaps[g])&#123;</span></div><div class="line">    <span class="comment">//             arr[j] = arr[j-gaps[g]];</span></div><div class="line">    <span class="comment">//         &#125;</span></div><div class="line">    <span class="comment">//         arr[j] = temp;</span></div><div class="line">    <span class="comment">//     &#125;</span></div><div class="line">    <span class="comment">//     // this.debug("第"+(g+1)+"轮希尔排序后:"+gaps);</span></div><div class="line">    <span class="comment">// &#125;</span></div><div class="line">      <span class="keyword">var</span> i,k,j,len=arr.length,gap = <span class="built_in">Math</span>.ceil(len/<span class="number">2</span>),temp;</div><div class="line">      <span class="keyword">while</span>(gap0)&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> k = <span class="number">0</span>; k &lt; gap; k++) &#123;</div><div class="line">            <span class="keyword">var</span> tagArr = [];</div><div class="line">            tagArr.push(arr[k])</div><div class="line">            <span class="keyword">for</span> (i = k+gap; i &lt; len; i=i+gap) &#123;              </div><div class="line">                temp = arr[i];</div><div class="line">                tagArr.push(temp);</div><div class="line">                <span class="keyword">for</span> (j=i-gap; j <span class="number">-1</span>; j=j-gap) &#123;</div><div class="line">                    <span class="keyword">if</span>(arr[j]temp)&#123;</div><div class="line">                        arr[j+gap] = arr[j];</div><div class="line">                    &#125;<span class="keyword">else</span>&#123;</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                arr[j+gap] = temp;</div><div class="line">            &#125;</div><div class="line">            <span class="built_in">console</span>.log(tagArr,<span class="string">"gap:"</span>+gap);<span class="comment">//输出当前进行插入排序的数组。</span></div><div class="line">            <span class="comment">// console.log(arr);//此轮排输出序后的数组。</span></div><div class="line">        &#125;</div><div class="line">        gap = <span class="built_in">parseInt</span>(gap/<span class="number">2</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.debug(<span class="string">"希尔排序after:"</span>+arr);</div><div class="line">    <span class="keyword">return</span> arr;   </div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//A* 排序  </span></div><div class="line">aAtarSort:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;   </div><div class="line">    Open = [起始节点]; Closed = [];  </div><div class="line">    <span class="comment">// while ( Open表非空 )  </span></div><div class="line">    <span class="comment">// &#123;  </span></div><div class="line">    <span class="comment">// 从Open中取得一个节点X，并从OPEN表中删除。  </span></div><div class="line">    <span class="comment">// if (X是目标节点)  </span></div><div class="line">    <span class="comment">// &#123;  </span></div><div class="line">    <span class="comment">// 求得路径PATH；返回路径PATH；  </span></div><div class="line">    <span class="comment">// &#125;  </span></div><div class="line">    <span class="comment">// for (每一个X的子节点Y)  </span></div><div class="line">    <span class="comment">// &#123;  </span></div><div class="line">    <span class="comment">// if( Y不在OPEN表和CLOSE表中 )  </span></div><div class="line">    <span class="comment">// &#123;  </span></div><div class="line">    <span class="comment">// 求Y的估价值；并将Y插入OPEN表中；//还没有排序  </span></div><div class="line">    <span class="comment">// &#125;  </span></div><div class="line">    <span class="comment">// else  </span></div><div class="line">    <span class="comment">// if( Y在OPEN表中 )  </span></div><div class="line">    <span class="comment">// &#123;  </span></div><div class="line">    <span class="comment">// if( Y的估价值小于OPEN表的估价值 )  </span></div><div class="line">    <span class="comment">// 更新OPEN表中的估价值；  </span></div><div class="line">    <span class="comment">// &#125;  </span></div><div class="line">    <span class="comment">// else //Y在CLOSE表中  </span></div><div class="line">    <span class="comment">// &#123;  </span></div><div class="line">    <span class="comment">// if( Y的估价值小于CLOSE表的估价值 )  </span></div><div class="line">    <span class="comment">// &#123;  </span></div><div class="line">    <span class="comment">// 更新CLOSE表中的估价值；  </span></div><div class="line">    <span class="comment">// 从CLOSE表中移出节点，并放入OPEN表中；  </span></div><div class="line">    <span class="comment">// &#125;  </span></div><div class="line">    <span class="comment">// &#125;  </span></div><div class="line">    <span class="comment">// 将X节点插入CLOSE表中；  </span></div><div class="line">    <span class="comment">// 按照估价值将OPEN表中的节点排序；  </span></div><div class="line">    <span class="comment">// &#125;//end for  </span></div><div class="line">    <span class="comment">// &#125;//end while  </span></div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//线性查找</span></div><div class="line">linearSearch:<span class="function"><span class="keyword">function</span>(<span class="params">arr,data</span>)</span>&#123;</div><div class="line">   <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;arr.length;i++)&#123;</div><div class="line">        <span class="keyword">if</span>(arr[i] == data)&#123;</div><div class="line">            <span class="keyword">return</span> i;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">   <span class="comment">//二分查找 适用于已排好序的线性结构</span></div><div class="line">   binarySearch:<span class="function"><span class="keyword">function</span>(<span class="params">arr,data</span>)</span>&#123;</div><div class="line">       <span class="keyword">var</span> lower = <span class="number">0</span>,</div><div class="line">           high = arr.length - <span class="number">1</span>,</div><div class="line">           mid;</div><div class="line">       <span class="keyword">while</span>(lower &lt;= high)&#123;</div><div class="line">           mid = <span class="built_in">Math</span>.floor((lower+high)/<span class="number">2</span>); <span class="comment">//Math.floor() 求一个最接近它的整数,它的值小于或等于这个浮点数</span></div><div class="line">           <span class="keyword">if</span>(arr[mid] &lt; data)&#123;</div><div class="line">               lower = mid + <span class="number">1</span>;</div><div class="line">           &#125;<span class="keyword">else</span> <span class="keyword">if</span>(arr[mid]  data)&#123;</div><div class="line">               high = mid - <span class="number">1</span>;</div><div class="line">           &#125;<span class="keyword">else</span>&#123;</div><div class="line">               <span class="keyword">return</span> mid;</div><div class="line">           &#125;</div><div class="line">           <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">       &#125;</div><div class="line">   &#125;,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>使用：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> tempArr = [<span class="number">3</span>,<span class="number">6</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">11</span>,<span class="number">10</span>,<span class="number">5</span>];</div><div class="line">sort.bubbleSort(tempArr); <span class="comment">//冒泡</span></div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+       &lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="yangyuemei.coding.me/categories/JavaScript/"/>
+    
+    
+      <category term="JavaScript" scheme="yangyuemei.coding.me/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo博客部署到coding</title>
+    <link href="yangyuemei.coding.me/2017/03/16/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E4%B9%8B____hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0coding/"/>
+    <id>yangyuemei.coding.me/2017/03/16/我的第一篇博客之____hexo博客部署到coding/</id>
+    <published>2017-03-16T09:01:41.000Z</published>
+    <updated>2017-03-21T02:14:01.261Z</updated>
+    
+    <content type="html"><![CDATA[<ol>
+<li><p><strong>安装node.js 环境，用命令行工具node -v  npm -v检测是否安装成功</strong></p>
+</li>
+<li><p><strong>安装<code>git</code> 环境，用命令行工具<code>git --version</code> 检测是否安装成功</strong></p>
+</li>
+<li><p><strong>git全局配置：</strong></p>
+<ul>
+<li><code>git config --global user.name &quot;your name&quot;</code></li>
+<li>git config –global user.name “your email;” `</li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><p><strong>注册coding账号并登陆,新建项目比如:myblog  </strong></p>
+<ul>
+<li>切换到pages-&gt;部署来源选master分支</li>
+</ul>
+</li>
+<li><p><strong>配置 sshkey</strong></p>
+<ul>
+<li>使用命令工具  <code>ssh-key -t rsa -C &quot;your@com&quot;</code></li>
+<li>一般在c盘打开.ssh-&gt;id_rsa.pub  复制里面全部的内容到coding找到ssh粘贴添加即可</li>
+<li>测试ssh是否添加成功，<code>ssh -T git@git.coding.net</code>,出现hi ，‘你的姓名就是成功</li>
+</ul>
+</li>
+<li><p><strong>安装hexo</strong></p>
+<ul>
+<li><code>npm install -g hexo</code></li>
+<li><code>npm install hexo --save</code></li>
+<li>看看hexo是否安装成功  <code>hexo -v</code></li>
+</ul>
+</li>
+<li><p><strong>随便在本地的一个地方新建一个文件夹hexo，进入到它的根目录，右键 Git Bash Here 进入</strong></p>
+</li>
+<li><p><strong>初始化hexo ：<code>hexo init</code></strong></p>
+</li>
+<li><p><strong>npm 自动安装需要的组件：<code>npm install</code></strong></p>
+</li>
+<li><p><strong>生成 <code>hexo g</code></strong></p>
+</li>
+<li><p><strong>启动 <code>hexo d</code></strong></p>
+</li>
+<li><p><strong>若端口冲突。则hexo server -p 5000</strong></p>
+</li>
+<li><p><strong>到此为止，hexo在本地的配置已经完成了</strong></p>
+</li>
+</ol>
+<p>修改 _config_yml文件</p>
+<ul>
+<li>url ：“yourname.coding.me”</li>
+<li>root：/你在coding建的仓库名/</li>
+</ul>
+<p>repository  即为ssh地址</p>
+<p>​    <strong>deploy:</strong></p>
+<p>​         <strong>type:git</strong></p>
+<p>​         <strong>repository:git@git.coding.net:yourname/yourcodingname.git</strong>   </p>
+<p>​         <strong>branch:master</strong></p>
+<p><strong><code>hexo d</code> push到coding</strong></p>
+<p><strong>hexo push常用命令</strong></p>
+<ol>
+<li><code>hexo clean</code></li>
+<li><code>hexo g</code></li>
+<li><code>hexo d</code></li>
+<li><code>hexo s</code> 本地预览</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;安装node.js 环境，用命令行工具node -v  npm -v检测是否安装成功&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;安装&lt;code&gt;git&lt;/code&gt; 环境，用命令行工具&lt;code&gt;git --ver
+    
+    </summary>
+    
+      <category term="hexo博客" scheme="yangyuemei.coding.me/categories/hexo%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="hexo博客" scheme="yangyuemei.coding.me/tags/hexo%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
+  
+</feed>
